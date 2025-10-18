@@ -2,6 +2,17 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`NODE_ENV` "development"
+
+`DATABASE_URL` "postgresql://username:password@localhost:5432/databasename?schema=gym_next&options=-c%20TimeZone=Asia/Kolkata"
+
+replace username, password and databasename with yours local database's name, username and password
+
+
  run in console:
 1.
 ```bash
