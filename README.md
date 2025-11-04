@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
 
 ## Environment Variables
@@ -7,6 +5,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 To run this project, you will need to add the following environment variables to your .env file
 
 `NODE_ENV` "development"
+
+`JWT_SECRET` your-jwt-secret
 
 `DATABASE_URL` "postgresql://username:password@localhost:5432/databasename?schema=gym_next&options=-c%20TimeZone=Asia/Kolkata"
 
