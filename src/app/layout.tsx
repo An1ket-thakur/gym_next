@@ -17,7 +17,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <body className={`antialiased`}>
+      <body className={`antialiased dark`}>
         {children}
         <Toaster />
       </body>

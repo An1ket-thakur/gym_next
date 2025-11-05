@@ -48,6 +48,7 @@ export default function Page() {
           }
         }
         setErrors(fieldErrors);
+        return;
       } else {
         setErrors({});
       }
@@ -69,58 +70,57 @@ export default function Page() {
     }
   };
   return (
-    <div className="relative bg-[url('/gym-bg.jpeg')] bg-cover bg-center min-h-dvh overflow-y-auto p-3 overscroll-contains">
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-0 pointer-events-none" />
+    <div className="relative min-h-dvh bg-[url('/gym-bg.jpeg')] bg-cover bg-center bg-no-repeat flex items-center justify-center px-6 py-12 md:py-0 overflow-hidden">
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
 
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-6 px-5 py-8">
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 w-full max-w-6xl mx-auto">
         {/* LEFT Section */}
-        <div className="w-full md:w-[40%] space-y-4 text-center md:text-left">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight">UNLEASH</h1>
-          <h2 className="bg-gradient-to-r from-green-400 via-blue-400 to-orange-400 text-5xl sm:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent">
+        <div className="w-full md:w-[45%] space-y-5 text-center md:text-left">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground">UNLEASH</h1>
+
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-primary via-ring to-chart-2 bg-clip-text text-transparent">
             YOUR POWER
           </h2>
 
-          <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-md">
+          <p className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-md mx-auto md:mx-0 leading-relaxed">
             Transform your body, elevate your mind, and conquer your limits with our elite training programs.
           </p>
 
-          <div className="flex flex-wrap max-w-md gap-3 justify-center md:justify-start">
-            <Button className="bg-green-500 hover:bg-green-400 text-black font-bold text-base sm:text-lg px-4 py-3 rounded-xl shadow-xl shadow-green-500/30">
+          <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base sm:text-lg px-5 py-3 rounded-xl shadow-md shadow-primary/30">
               START FREE TRIAL
             </Button>
 
             <Button
               variant="outline"
-              className="border-green-500 text-green-500 hover:bg-green-400 hover:text-black font-bold text-base sm:text-lg px-4 py-3 rounded-xl shadow-lg shadow-green-500/30"
+              className="border-ring text-ring hover:bg-ring hover:text-white font-semibold text-base sm:text-lg px-5 py-3 rounded-xl shadow-md shadow-ring/30"
             >
               WATCH DEMO
             </Button>
           </div>
         </div>
 
-        {/* RIGHT Section - Signup Card */}
-        <div className="w-full md:w-[40%] flex justify-center">
-          <Card className="border-green-500 bg-gradient-to-r from-green-500/10 to-blue-500/5 text-white rounded-xl w-full max-w-md p-6 shadow-lg backdrop-blur-md">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-                POWER UP
+        {/* RIGHT Section (Signup Form Card) */}
+        <div className="w-full md:w-[45%]">
+          <Card className="w-full border-border bg-white/10 backdrop-blur-xl border border-white/20d text-card-foreground rounded-xl shadow-xl">
+            <CardHeader className="text-center space-y-2 px-6 pt-6">
+              <CardTitle className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-primary to-ring bg-clip-text text-transparent">
+                Power Up
               </CardTitle>
-              <CardDescription className="text-gray-300">Your fitness journey starts here</CardDescription>
+              <CardDescription className="text-muted-foreground text-sm sm:text-base">
+                Your fitness journey starts here
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              {/* Signup Form */}
+
+            <CardContent className="px-6 pb-8">
               <form
                 onSubmit={handleSubmit}
-                className="space-y-4"
+                className="space-y-5"
               >
                 {/* Name */}
                 <div className="space-y-1">
-                  <Label
-                    htmlFor="username"
-                    className="text-white"
-                  >
-                    Name
-                  </Label>
+                  <Label htmlFor="username">Name</Label>
                   <Input
                     id="username"
                     name="username"
@@ -128,18 +128,14 @@ export default function Page() {
                     placeholder="Enter Name"
                     value={formData.username}
                     onChange={handleChange}
-                    className="bg-transparent border-green-500 text-white placeholder:text-gray-400 focus-visible:ring-green-500"
+                    className="bg-transparent border-input focus-visible:ring-ring"
                   />
-                  {errors.username && <p className="text-red-400 text-sm">{errors.username[0]}</p>}
+                  {errors.username && <p className="text-destructive text-sm">{errors.username[0]}</p>}
                 </div>
+
                 {/* Email */}
                 <div className="space-y-1">
-                  <Label
-                    htmlFor="email"
-                    className="text-white"
-                  >
-                    Email
-                  </Label>
+                  <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
                     name="email"
@@ -147,18 +143,14 @@ export default function Page() {
                     placeholder="Enter Email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="bg-transparent border-green-500 text-white placeholder:text-gray-400 focus-visible:ring-green-500"
+                    className="bg-transparent border-input focus-visible:ring-ring"
                   />
-                  {errors.email && <p className="text-red-400 text-sm">{errors.email[0]}</p>}
+                  {errors.email && <p className="text-destructive text-sm">{errors.email[0]}</p>}
                 </div>
+
                 {/* Password */}
                 <div className="space-y-1">
-                  <Label
-                    htmlFor="password"
-                    className="text-white"
-                  >
-                    Password
-                  </Label>
+                  <Label htmlFor="password">Password</Label>
                   <Input
                     id="password"
                     name="password"
@@ -166,18 +158,14 @@ export default function Page() {
                     placeholder="Enter Password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="bg-transparent border-green-500 text-white placeholder:text-gray-400 focus-visible:ring-green-500"
+                    className="bg-transparent border-input focus-visible:ring-ring"
                   />
-                  {errors.password && <p className="text-red-400 text-sm">{errors.password[0]}</p>}
+                  {errors.password && <p className="text-destructive text-sm">{errors.password[0]}</p>}
                 </div>
+
                 {/* Confirm Password */}
                 <div className="space-y-1">
-                  <Label
-                    htmlFor="confirmPassword"
-                    className="text-white"
-                  >
-                    Confirm Password
-                  </Label>
+                  <Label htmlFor="confirmPassword">Confirm Password</Label>
                   <Input
                     id="confirmPassword"
                     name="confirmPassword"
@@ -185,38 +173,44 @@ export default function Page() {
                     placeholder="Confirm Your Password"
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className="bg-transparent border-green-500 text-white placeholder:text-gray-400 focus-visible:ring-green-500"
+                    className="bg-transparent border-input focus-visible:ring-ring"
                   />
-                  {errors.confirmPassword && <p className="text-red-400 text-sm">{errors.confirmPassword[0]}</p>}
+                  {errors.confirmPassword && <p className="text-destructive text-sm">{errors.confirmPassword[0]}</p>}
                 </div>
 
+                {/* Submit */}
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-orange-500 hover:bg-orange-400 text-black font-bold text-lg p-4 rounded-xl shadow-xl shadow-orange-500/30"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-lg py-3 rounded-xl shadow-md shadow-primary/30"
                 >
                   {isSubmitting ? <Spinner /> : "Join Now"}
                 </Button>
 
-                <div className="flex items-center justify-center gap-2 text-gray-300 pt-2">
-                  <span>or join with</span>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    disabled={isSubmitting}
-                    className="bg-green-500 hover:bg-green-400 text-black font-bold flex gap-2 items-center shadow-lg shadow-green-500/30"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      className="w-5 h-5"
-                      fill="currentColor"
-                    >
-                      <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
-                    </svg>
-                    Google
-                  </Button>
+                {/* Divider */}
+                <div className="flex items-center gap-2">
+                  <div className="h-px bg-border flex-1" />
+                  <span className="text-muted-foreground text-sm">or join with</span>
+                  <div className="h-px bg-border flex-1" />
                 </div>
+
+                {/* Google Button */}
+                <Button
+                  type="button"
+                  variant="secondary"
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center gap-2 font-semibold bg-accent-foreground dark:text-black"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5 dark:text-black"
+                    fill="currentColor"
+                  >
+                    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+                  </svg>
+                  Google
+                </Button>
               </form>
             </CardContent>
           </Card>
